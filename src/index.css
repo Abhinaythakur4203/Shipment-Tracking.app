@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+.btn{
+    height: 9vmin;
+    width: 13vmin;
+    border: none;
+    border-radius: 7px;
+    font-size: 2.5vmin;
+    color: rgb(36, 35, 35);
+    background-color: #00ffff;
+    
+    margin: 2px;
+}
+.btn:hover{
+    background-color: #36c2c2;
+    color: white;
+}
+
+@media (max-width: 1024px) {
+
+
+    .SidebarName{
+        display: none;
+    }
+    .sidenav{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: auto;
+    }
+    .btn{
+        height: 10vmin;
+        width: 15vmin;
+        font-size: 3vmin;
+    }
+}
