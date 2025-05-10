@@ -37,12 +37,15 @@ Ensure you have the following installed on your system:
 ---
 
 2. **Install Dependencies**:
-    ```
+
     Install the required dependencies using npm or yarn:
 
+    ```
     npm install
-
+    ```
+    
         Or, if you prefer yarn:
+    ```
     
     yarn install
     ```
@@ -52,20 +55,20 @@ Ensure you have the following installed on your system:
 ### Running the Project
 
 1. **Start the Development Server**:
-    ```
     Run the following command to start the development server:
-
+    ```
     npm run dev
-
+    ```
         Or, if using yarn:
-
+    ```
     yarn dev
 
     ```
 2. **pen in Browser**:
+    Once the server is running, open your browser and navigate to:
 
     ```
-     Once the server is running, open your browser and navigate to:http://localhost:5173
+     http://localhost:5173
     ```
 
 ---
