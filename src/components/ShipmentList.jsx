@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { getAllShipments } from '../api/shipmentsAPI.js';
 import { Link } from 'react-router-dom';
+import { Search  } from 'lucide-react';
+
 
 export default function ShipmentList() {
   const [shipments, setShipments] = useState([]);
@@ -27,39 +29,57 @@ export default function ShipmentList() {
   }, [page]);
 
   return (
-    <div>
-      
+    <div className=''>
+      <div className="mx-4 mt-4 mb-5 flex flex-col justify-start ">
+        <h1 className="text-2xl font-bold  mb-1">Shipments Management</h1>
+        <p className='text-1rem text-gray-400 ml-4 mb-4'>all shipment, edit, remove</p>
+
+        <div className="relative flex items-center w-70 border border-gray-300 rounded-lg dark:focus:ring-blue-500 dark:border-gray-600">
+          <Search className="absolute left-3 w-5 h-5 text-gray-400" />
+          <input
+            type="text"
+            id="searchShipment"
+            className="pl-10 bg-gray-50 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:placeholder-gray-400 dark:text-white dark:focus:border-blue-500"
+            placeholder="Search"
+            required
+            onChange={(e) => {}}
+            
+          />
+        </div>
+
+      </div>
 
 
-      <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-          <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+
+      <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+        <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+          <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-              <th scope="col" class="p-4">
-                <div class="flex items-center">
-                  <input id="checkbox-all-search" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
-                  <label for="checkbox-all-search" class="sr-only">checkbox</label>
+              <th scope="col" className="p-4">
+                <div className="flex items-center">
+                  <input id="checkbox-all-search" type="checkbox" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" />
+                  <label for="checkbox-all-search" className="sr-only">checkbox</label>
                 </div>
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Shipment_ID
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Container_ID
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Routes
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Current Location
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Current ETA
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 status
               </th>
-              <th scope="col" class="px-6 py-3">
+              <th scope="col" className="px-6 py-3">
                 Actions
               </th>
             </tr>

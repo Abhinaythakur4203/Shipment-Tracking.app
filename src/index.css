@@ -1,5 +1,20 @@
 @import "tailwindcss";
 
+:root {
+    --tw-bg-opacity: 1;
+    --tw-text-opacity: 1;
+    --tw-border-opacity: 1;
+    --tw-ring-opacity: 1;
+
+    
+}
+
+h1{
+    font-family: "Montserrat", "Montserrat Fallback";
+    font-size: 5vmin;
+    color: rgb(240, 231, 231);
+}
+
 .btn{
     height: 9vmin;
     width: 13vmin;
