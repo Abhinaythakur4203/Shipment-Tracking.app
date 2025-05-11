@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import {createShipment} from "../api/shipmentsAPI.js";
+import js from "@eslint/js";
 
 const ShipmentForm = () => {
   const [shipmentData, setShipmentData] = useState({
@@ -25,8 +27,8 @@ const ShipmentForm = () => {
         ...shipmentData,
         route: updatedRoute,
         currentLocation: {
-          lat: currentStop.lat,
-          lng: currentStop.lng,
+          lat: parseFloat(currentStop.lat),
+          lng: parseFloat(currentStop.lng),
           locationName: currentStop.name,
         },
       });
@@ -42,18 +44,19 @@ const ShipmentForm = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Submitted Shipment:", shipmentData);
+    //await createShipment(JSON.stringify(shipmentData));
+    console.log("Submitted Shipment:",JSON.stringify(shipmentData));
     // You can post this data to a backend here
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md space-y-6"
+      className="w-auto mx-auto mb-6 bg-gradient-to-br from-slate-700 to-gray-800 p-6 rounded-lg shadow-md space-y-6"
     >
-      <h2 className="text-2xl font-semibold text-gray-800">Create New Shipment</h2>
+      <h2 className="text-2xl text-gray-100">Create New Shipment</h2>
 
       {/* Shipment Details */}
       <div className="grid grid-cols-2 gap-4">
@@ -139,7 +142,7 @@ const ShipmentForm = () => {
           name="currentETA"
           value={shipmentData.currentETA}
           onChange={handleInputChange}
-          className="mt-1 block w-full p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
+          className="mt-1 block w-64 p-2 border border-gray-300 rounded-lg focus:ring-blue-500 focus:border-blue-500"
           required
         />
       </div>
@@ -147,9 +150,9 @@ const ShipmentForm = () => {
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"
+        className="w-30 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"
       >
-        Submit Shipment
+        Submit
       </button>
     </form>
   );

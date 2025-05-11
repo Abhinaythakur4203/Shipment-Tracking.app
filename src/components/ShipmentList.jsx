@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { getAllShipments } from '../api/shipmentsAPI.js';
 import { Search } from 'lucide-react';
+import ShipmentForm from './ShipmentForm';
 
 export default function ShipmentList() {
   const [shipments, setShipments] = useState([]);
@@ -8,6 +9,7 @@ export default function ShipmentList() {
   const [hasMore, setHasMore] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
+  const [showForm, setShowForm] = useState(false);
 
   useEffect(() => {
     setError(null);
@@ -23,6 +25,11 @@ export default function ShipmentList() {
         setError('Failed to load shipments. Please try again.');
       });
   }, [page]);
+
+
+  const handleAddNewShipment = () => {
+    setShowForm(showForm => !showForm);
+  }
 
   return (
     <div className="p-4">
@@ -47,10 +54,17 @@ export default function ShipmentList() {
         <button
           type="button"
           className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-800"
+          onClick={handleAddNewShipment}
         >
           Add New
         </button>
       </div>
+
+      {showForm && (
+        <div className='display flex justify-center transition ease-in-out duration-300'>
+          <ShipmentForm  />
+        </div>
+      )}
 
       {/* Table Section */}
       <div className="relative overflow-x-auto shadow-md sm:rounded-lg">

@@ -9,12 +9,15 @@ import ShipmentMap from './components/ShipmentMap.jsx';
 function App() {
   return (
     <>
-      <div className='flex w-full h-screendark:bg-main-dark-bg'>
+      <div className='flex w-full min-h-screen  dark:bg-main-dark-bg'>
         <BrowserRouter>
-          <div className='flex flex-col w-1/5  h-screen  dark:bg-main-dark-bg'>
+          {/* Sidebar */}
+          <div className='fixed top-0 left-0 w-1/5 h-full dark:bg-main-dark-bg'>
             <Sidebar />
           </div>
-          <div className='w-full p-2.5 h-screen  bg-gray-800 dark:bg-main-dark-bg'>
+
+          {/* Main Content */}
+          <div className='ml-[20%] w-[80%] p-2.5 min-h-full bg-gray-800 dark:bg-main-dark-bg'>
             <Routes>
               <Route path='/' element={<ShipmentList />} />
               <Route path='/dashboard/all-shipment' element={<ShipmentList />} />
