@@ -16,7 +16,7 @@ export const Sidebar = () => {
 
     return (
         <>
-            <div className='flex flex-col w-full h-screen bg-gray-900 dark:bg-main-dark-bg'>
+            <div className='flex flex-col w-full h-screen bg-gradient-to-r fbg-gradient-to-br from-slate-700 to-gray-900 dark:bg-main-dark-bg'>
                 <div className='flex items-center justify-center h-16 text-white text-2xl font-bold'>
                     Shipment Tracker
                 </div>
