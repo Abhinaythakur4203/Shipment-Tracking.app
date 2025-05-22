@@ -25,7 +25,7 @@ export default function ShipmentMap() {
   const [path, setPath] = useState([]);
   const [current, setCurrent] = useState(defaultShipment.currentLocation);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!shipmentId.trim()) {
@@ -33,7 +33,7 @@ export default function ShipmentMap() {
       return;
     }
 
-    getShipmentById(shipmentId.trim())
+   await getShipmentById(shipmentId.trim())
       .then((response) => {
         const data = response.data.data;
         setShipmentData(data);

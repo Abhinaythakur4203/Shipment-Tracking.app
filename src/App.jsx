@@ -5,6 +5,7 @@ import ShipmentList from './components/ShipmentList';
 import ShipmentForm from './components/ShipmentForm';
 import ShipmentDetails from './pages/ShipmentDetails';
 import ShipmentMap from './components/ShipmentMap.jsx';
+import ShipmentUpdateLocation from './components/ShipmentUpdateLocation.jsx';
 
 function App() {
   return (
@@ -23,7 +24,7 @@ function App() {
               <Route path='/dashboard/all-shipment' element={<ShipmentList />} />
               <Route path='/dashboard/create-shipment' element={<ShipmentForm />} />
               <Route path='/dashboard/track-shipment' element={<ShipmentDetails />} />
-              <Route path='/dashboard/update-location' element={<ShipmentForm />} />
+              <Route path='/dashboard/update-location' element={<ShipmentUpdateLocation />} />
               <Route path='/dashboard/map-view' element={<ShipmentMap />} />
             </Routes>
           </div>

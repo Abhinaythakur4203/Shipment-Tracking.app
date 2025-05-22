@@ -6,10 +6,11 @@ import ShipmentForm from './ShipmentForm';
 export default function ShipmentList() {
   const [shipments, setShipments] = useState([]);
   const [page, setPage] = useState(1);
-  const [hasMore, setHasMore] = useState(true);
+  const [hasMore, setHasMore] = useState(false);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState('');
   const [showForm, setShowForm] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     setError(null);
@@ -53,10 +54,10 @@ export default function ShipmentList() {
         </div>
         <button
           type="button"
-          className="px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-800"
+          className="px-5 py-3 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700  dark:bg-blue-700 dark:hover:bg-blue-800 dark:focus:ring-blue-800"
           onClick={handleAddNewShipment}
         >
-          Add New
+          {showForm ? 'Cancel' : 'Add New'}
         </button>
       </div>
 
@@ -148,18 +149,21 @@ export default function ShipmentList() {
 
       {/* Pagination Section */}
       <div className="flex justify-between items-center mt-6">
+        <div>
+        {page > 1 && 
         <button
           className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
           onClick={() => setPage((p) => p - 1)}
-          disabled={page === 1}
+          disabled={(page === 1)}
         >
           Prev
         </button>
+        }</div>
         <p className="text-gray-500">Page: {page}</p>
         <button
           className="px-4 py-2 text-sm font-medium text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 focus:ring-4 focus:ring-gray-300 dark:bg-gray-700 dark:text-white dark:hover:bg-gray-600 dark:focus:ring-gray-600"
           onClick={() => setPage((p) => p + 1)}
-          disabled={!hasMore}
+          disabled={hasMore}
         >
           Next
         </button>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import {createShipment} from "../api/shipmentsAPI.js";
+import { createShipment } from "../api/shipmentsAPI.js";
 import js from "@eslint/js";
 
 const ShipmentForm = () => {
@@ -11,6 +11,8 @@ const ShipmentForm = () => {
     currentETA: "",
   });
 
+  const [isloading, setLoading] = useState(false);
+
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     setShipmentData({ ...shipmentData, [name]: value });
@@ -18,7 +20,7 @@ const ShipmentForm = () => {
 
   const handleRouteChange = (index, field, value) => {
     const updatedRoute = [...shipmentData.route];
-    updatedRoute[index][field] = field === "isCurrent" ? value === "true" : value;
+    updatedRoute[index][field] = field === "isCurrent" ? value === "true" : field === "lat" || field === "lng" ? parseFloat(value) : value;
 
     if (field === "isCurrent" && value === "true") {
       updatedRoute.forEach((r, i) => (r.isCurrent = i === index));
@@ -45,23 +47,33 @@ const ShipmentForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    //await createShipment(JSON.stringify(shipmentData));
-    console.log("Submitted Shipment:",JSON.stringify(shipmentData));
-    // You can post this data to a backend here
+    try {
+      e.preventDefault();
+      await createShipment(shipmentData);
+      setLoading(true);
+      //console.log("Submitted Shipment:",JSON.stringify(shipmentData));
+      // You can post this data to a backend here
+    } catch (error) {
+      //console.error("Error creating shipment:", error);
+      alert("Error creating shipment. Please try again later.");
+      setLoading(false);
+    }
+    finally {
+      setLoading(false);
+    }
   };
 
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-auto mx-auto mb-6 bg-gradient-to-br from-slate-700 to-gray-800 p-6 rounded-lg shadow-md space-y-6"
+      className="w-auto mx-auto mb-6 bg-gradient-to-br from-slate-700 to-gray-800 p-6 rounded-lg shadow-md space-y-6 "
     >
       <h2 className="text-2xl text-gray-100">Create New Shipment</h2>
 
       {/* Shipment Details */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label className="block text-sm font-medium text-gray-700">Shipment ID</label>
+          <label className="block text-sm font-medium text-white">Shipment ID</label>
           <input
             type="text"
             name="shipmentId"
@@ -73,7 +85,7 @@ const ShipmentForm = () => {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700">Container ID</label>
+          <label className="block text-sm font-medium text-white">Container ID</label>
           <input
             type="text"
             name="containerId"
@@ -88,7 +100,7 @@ const ShipmentForm = () => {
 
       {/* Route Stops */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Route Stops</label>
+        <label className="block text-sm font-medium text-white mb-2">Route Stops</label>
         {shipmentData.route.map((stop, index) => (
           <div key={index} className="grid grid-cols-5 gap-4 mb-3">
             <input
@@ -136,7 +148,7 @@ const ShipmentForm = () => {
 
       {/* Current ETA */}
       <div>
-        <label className="block text-sm font-medium text-gray-700">Current ETA</label>
+        <label className="block text-sm font-medium text-white">Current ETA</label>
         <input
           type="datetime-local"
           name="currentETA"
@@ -150,9 +162,11 @@ const ShipmentForm = () => {
       {/* Submit Button */}
       <button
         type="submit"
-        className="w-30 bg-blue-600 text-white py-3 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"
+        disabled={isloading}
+        className="w-30 bg-blue-600 text-white font-medium py-3 px-4 rounded-lg hover:bg-blue-700 focus:ring-4 focus:ring-blue-300"
       >
-        Submit
+        {isloading && <span className="loader"></span>}
+        {isloading ? "Submitting..." : "Submit"}
       </button>
     </form>
   );
