@@ -6,6 +6,7 @@ import ShipmentForm from './components/ShipmentForm';
 import ShipmentDetails from './pages/ShipmentDetails';
 import ShipmentMap from './components/ShipmentMap.jsx';
 import ShipmentUpdateLocation from './components/ShipmentUpdateLocation.jsx';
+import Dashboard from './components/Dashboard.jsx';
 
 function App() {
   return (
@@ -18,9 +19,9 @@ function App() {
           </div>
 
           {/* Main Content */}
-          <div className='ml-[20%] w-[80%] p-2.5 min-h-full bg-gray-800 dark:bg-main-dark-bg'>
+          <div className=' ml-[20%] w-[100%] p-2.5 min-h-full  bg-gray-800 dark:bg-main-dark-bg'>
             <Routes>
-              <Route path='/' element={<ShipmentList />} />
+              <Route path='/' element={<Dashboard />} />
               <Route path='/dashboard/all-shipment' element={<ShipmentList />} />
               <Route path='/dashboard/create-shipment' element={<ShipmentForm />} />
               <Route path='/dashboard/track-shipment' element={<ShipmentDetails />} />

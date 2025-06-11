@@ -34,6 +34,15 @@ h1{
 
 @media (max-width: 1024px) {
 
+    .bodyContainer{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100vh;
+    }
+    
 
     .SidebarName{
         display: none;
@@ -44,6 +53,7 @@ h1{
         justify-content: center;
         align-items: center;
         width: auto;
+        z-index: 10;
     }
     .btn{
         height: 10vmin;
